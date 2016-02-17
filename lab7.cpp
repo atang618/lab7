@@ -9,6 +9,28 @@ short greater_val(short *, short *);
 void pointer_arithmetic_ints();
 void pointer_data(int);
 
+class Student
+{
+public:
+    Student()
+    {
+        first_name_="Unknown";
+        last_name_="Person";
+        grad_year_=2018;
+    }
+
+    Student(string f_name, string l_name, int g_year)
+    : first_name_{f_name}, last_name_{l_name}, grad_year_{g_year}
+    {
+    }
+
+
+
+private:
+    string first_name_;
+    string last_name_;
+    int grad_year_;
+};
 
 int main()
 {
@@ -18,9 +40,12 @@ int main()
     //pointer_arithmetic_ints();
 
 
-    //pointer_fun(6,3);
-    //greater_val(...)
-    //pointer_arithmetic_chars();
+    pointer_fun(6,3);
+    short* ptrA = new short(3);
+    short* ptrB = new short(6);
+    short ans = greater_val(ptrA, ptrB);
+    cout << ans << "\n";
+    pointer_arithmetic_chars();
 
 }
 
@@ -28,12 +53,18 @@ int main()
  * Prints to terminal the values of the ints at the pointers. Then, prints to terminal the value of the ints at the pointer locations.*/
 void pointer_fun(int a, int b)
 {
-    //your code here
+    int* ptrA = new int(a);
+    int* ptrB = new int(b);
+
+    cout << "Value at pointer A: " << *ptrA <<"\n";
+    cout << "Value at pointer B: " << *ptrB <<"\n";
+    cout << "Pointer location A: " << ptrA  <<"\n";
+    cout << "Pointer location B: " << ptrB  <<"\n";
 
 
     //follow-up question; how far away, in bytes, is location of ptrA versus location of ptrB? How many bytes is an int stored in?
-    //cout << "\n Int size (bytes): "<< sizeof(a) << endl;
-
+    cout << "Distance between pointer A and pointer B: " << ptrB - ptrA << "\n";
+    cout << "Int size (bytes): "<< sizeof(a) << endl;
 }
 
 void pointer_arithmetic_chars()
@@ -45,22 +76,18 @@ void pointer_arithmetic_chars()
 
     for(int i=0; i<length; i++)
     {
-        //your code here:
-
-            //print to terminal each letter in char[] by dereferencing pc
-
-            //increment pointer
-
+        cout << *pc;
+        ++pc;
 
     }
 }
 
 short greater_val(short * ptrA, short * ptrB)
 {
-    //your code here
-
-
-    return 0; // <--- change this
+    if (*ptrA >= *ptrB)
+        return *ptrA;
+    else
+        return *ptrB;
 }
 
 /* prints out pointer location in hex, decimal, and binary */
@@ -73,7 +100,6 @@ void pointer_data(int a)
     cout << "    (decimal)    : " << (long) ptrA << endl;
     cout << "    (binary)     : " <<  bitset<64>((long) ptrA) << '\n' << endl;
 
-    //Do the same for int b -- your code here
 }
 
 /* prints out ints and pointer addresses */
@@ -98,3 +124,9 @@ void pointer_arithmetic_ints()
     }
 }
 
+void add_student(Student A) {
+    string * ptrA = new string();
+}
+void remove_student() {
+
+}
